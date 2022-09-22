@@ -18,5 +18,31 @@ struct CoinManager {
 
     func getCoinPrice(for currency: String) {
         print(currency)
+        let urlString = "\(baseURL)/\(currency)?apiKey=B34FE8B1-1AC3-4448-B82B-0C36E6A2DA98"
+//        let urlString = "\(baseURL)/\(currency)"
+        
+        performRequest(with: urlString)
+    }
+    
+    func performRequest(with urlString: String) {
+        if let url = URL(string: urlString) {
+            
+//            var request = URLRequest(url: url)
+//            request.setValue(apiKey, forHTTPHeaderField: "X-CoinAPI-Key")
+            let session = URLSession(configuration: .default)
+
+//            let task = session.dataTask(with: request) { data, response, error in
+            let task = session.dataTask(with: url) { data, response, error in
+                if error != nil {
+                    return
+                }
+                
+                if let safeData = data {
+                    print(safeData)
+                }
+            }
+
+            task.resume()
+        }
     }
 }
