@@ -9,14 +9,16 @@
 import UIKit
 
 class ViewController: UIViewController, UIPickerViewDataSource {
+
+    let coinManager = CoinManager()
+
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        <#code#>
+        return coinManager.currencyArray.count
     }
-    
 
     @IBOutlet weak var bitcoinPriceLabel: UILabel!
     @IBOutlet weak var currencyLabel: UILabel!
